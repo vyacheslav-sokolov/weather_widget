@@ -1,0 +1,49 @@
+<template>
+    <lightning-card title={getCityName} icon-name="standard:forecasts">
+        <lightning-layout>
+            <lightning-layout-item size="6" style="margin-left:20px;">
+
+                <lightning-input type="text" name="Enter City" label="City" placeholder="Enter City" value={value}
+                    onchange={onCityChange}>
+                </lightning-input>
+
+
+            </lightning-layout-item>
+            <div class="slds-size_6-of-12" style="padding-top: 25px; padding-left: 25PX;">
+                <lightning-button label="Get Weather" variant="brand" onclick={handleChange}></lightning-button>
+            </div>
+
+        </lightning-layout>
+        <lightning-layout>
+            <lightning-layout-item size="3" medium-device-size="4" padding="around-small">
+                <lightning-card icon-name="standard:topic" title="Temperature">
+                    <div class="slds-align_absolute-center color-blue">
+                        <template if:true={result}>
+                            {getConvertedTemp}
+                        </template>
+                    </div>
+                </lightning-card>
+            </lightning-layout-item>
+            <lightning-layout-item size="3" medium-device-size="4" padding="around-small">
+                <lightning-card icon-name="utility:flow" title="Wind Speed">
+                    <div class="slds-align_absolute-center color-grey">
+                        <template if:true={result}>
+                            {getCurrentWindSpeed}
+                        </template>
+                    </div>
+                </lightning-card>
+            </lightning-layout-item>
+            <lightning-layout-item size="3" medium-device-size="4" padding="around-small">
+                <lightning-card icon-name="standard:calibration" title="Precipitation">
+                    <div class="slds-align_absolute-center color-green">
+                        <template if:true={result}>
+                            {getCurrentPrecip}
+                        </template>
+                    </div>
+                </lightning-card>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-map map-markers={mapMarkers} zoom-level={zoomLevel} style="height: 230px;">
+        </lightning-map>
+    </lightning-card>
+</template>
